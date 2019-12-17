@@ -29,28 +29,11 @@ const cocoFork = function(...parentArgs) {
 
       if (l == "group" || l == "groupCollapsed") {
         groupLevel++;
-        // console[l].apply(console, parentArgs);
-        // return;
       }
 
       if (l == "groupEnd") {
         groupLevel--;
-        // console[l].apply(console, parentArgs);
-        // return;
       }
-
-      // if (groupLevel == 0) {
-      //   args.splice(0, 0, ...parentArgs);
-      // }
-
-      // // if (
-      // //   l != "group" &&
-      // //   l != "groupCollapsed" &&
-      // //   l != "groupEnd" &&
-      // //   groupLevel > 0
-      // // ) {
-      // //   args.splice(0, parentArgs.length);
-      // // }
 
       if (
         l != "group" &&
@@ -106,4 +89,4 @@ coco.disable = function() {
   return horisenLog;
 };
 
-export default horisenLog;
+export default coco;
