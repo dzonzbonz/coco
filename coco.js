@@ -3,7 +3,7 @@
 var logEnabled = true;
 var logMode = "normal"; // normal, line
 let groupLevel = 0;
-const cocoFork = function(...parentArgs) {
+const csFork = function(...parentArgs) {
   const methods = [
     "log",
     "warn",
@@ -54,7 +54,7 @@ const cocoFork = function(...parentArgs) {
 
   fork.fork = function(...args) {
     args.splice(0, 0, ...parentArgs);
-    return cocoFork(...args);
+    return csFork(...args);
   };
 
   fork.begin = function (...args) {
@@ -77,16 +77,16 @@ const cocoFork = function(...parentArgs) {
   return fork;
 };
 
-const coco = cocoFork();
+const cs = csFork();
 
-coco.enable = function() {
+cs.enable = function() {
   logEnabled = true;
-  return coco;
+  return cs;
 };
 
-coco.disable = function() {
+cs.disable = function() {
   logEnabled = false;
-  return coco;
+  return cs;
 };
 
-export default coco;
+export default cs;
