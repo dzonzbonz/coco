@@ -36,7 +36,7 @@ _block.log('params', thatSampleParam);
 
 const mathDouble = (param) => cs.block('#mathDouble', _log => {
   _log('params', param);
-  return '[' + anotherMethod(param, param) + '];
+  return '[' + anotherMethod(param, param) + ']';
 });
 
 const mathAdd = (param, anotherParam) => cs.block('#mathAdd', _log => {
@@ -68,7 +68,7 @@ const wrapAll = (paramArray) => cs.block('#wrapAll', _log => {
     }
 
     _tlog.info('wrap even');
-    return '[' + itm + ']
+    return '[' + itm + ']';
   })
 });
 
