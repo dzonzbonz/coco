@@ -54,7 +54,7 @@ const cocoFork = function(...parentArgs) {
 
   fork.fork = function(...args) {
     args.splice(0, 0, ...parentArgs);
-    return horisenLogFork(...args);
+    return cocoFork(...args);
   };
 
   fork.begin = function (...args) {
@@ -81,12 +81,12 @@ const coco = cocoFork();
 
 coco.enable = function() {
   logEnabled = true;
-  return horisenLog;
+  return coco;
 };
 
 coco.disable = function() {
   logEnabled = false;
-  return horisenLog;
+  return coco;
 };
 
 export default coco;
