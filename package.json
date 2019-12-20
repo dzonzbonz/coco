@@ -1,0 +1,40 @@
+{
+  "name": "codestream.js",
+  "description": "Usefull libraries for making quick web based apps",
+  "keywords": [
+    "dzonz",
+    "core"
+  ],
+  "homepage": "https://github.com/dzonzbonz",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nikola Ivanovic - Dzonz",
+    "url": "https://github.com/dzonzbonz"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/dzonzbonz/codestream.js"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "ssh://git-user@git.horisen.biz:8142/opt/git/horisen-pro/angular/components/horisen-angular.git"
+  },
+  "main": "dist/codestream-min.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.dev.js --mode=development --optimize-minimize --display-chunks=true --display=detailed",
+    "production": "webpack --config webpack.prod.js --mode=production --optimize-minimize --display-chunks=true --display=detailed",
+    "test:mocha": "cross-env TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\" }' mocha -r ts-node/register -r ignore-styles -r jsdom-global/register src/lib/**/*.spec.ts src/lib/*.spec.ts"
+  }
+}

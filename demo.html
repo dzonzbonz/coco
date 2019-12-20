@@ -1,0 +1,43 @@
+<script src="dist/codestream.js"></script>
+
+<script>
+  var _c = codestream.block;
+
+  console.log("except for this one!");
+  var result = _c("<html3>", function(parentHandle) {
+    console.log("logText" + parentHandle);
+    parentHandle.fork("#childBlock()", childHandle => {
+      console.info("infoText" + childHandle);
+      console.warn("warnText" + childHandle);
+    });
+    console.log("logText2" + parentHandle);
+    parentHandle.fork("#childBlock2()", childHandle => {
+      console.info("infoText2" + childHandle);
+      console.warn("warnText2" + childHandle);
+    });
+  });
+  var result = _c("<html>", function(parentHandle) {
+    console.log("logText" + parentHandle);
+    parentHandle.fork("#childBlock()", childHandle => {
+      console.info("infoText" + childHandle);
+      console.warn("warnText" + childHandle);
+    });
+    console.log("logText2" + parentHandle);
+    parentHandle.fork("#childBlock2()", childHandle => {
+      console.info("infoText2" + childHandle);
+      console.warn("warnText2" + childHandle);
+    });
+  });
+  var result2 = _c("<html2>", function(parentHandle) {
+    console.log("logText");
+    parentHandle.fork("#childBlock()", childHandle => {
+      console.info("infoText", childHandle.tag());
+      console.warn("warnText", childHandle.tag());
+    });
+    console.log("consoleText");
+    parentHandle.fork("#childBlock2()", childHandle => {
+      console.info("consoleInfo", childHandle.tag());
+      console.warn("consoleWarn2", "" + childHandle);
+    });
+  });
+</script>

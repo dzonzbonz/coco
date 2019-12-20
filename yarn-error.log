@@ -1,0 +1,31 @@
+Arguments: 
+  /usr/bin/node /home/dzonz/.yarn/bin/yarn.js add webpack webpac-cli -D
+
+PATH: 
+  /home/dzonz/.yarn/bin:/home/dzonz/.config/yarn/global/node_modules/.bin:/home/dzonz/.yarn/bin:/home/dzonz/.config/yarn/global/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/dzonz/Apps/android-sdk/tools/:/home/dzonz/Apps/android-sdk/platform-tools/:/work/tools/flutter/bin/:/usr/lib/dart/bin/:/usr/lib/phraseapp/:/home/dzonz/Apps/android-sdk/tools/:/home/dzonz/Apps/android-sdk/platform-tools/:/work/tools/flutter/bin/:/usr/lib/dart/bin/:/usr/lib/phraseapp/
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /work/my-git-projects/codestream.js/package.json: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at /home/dzonz/.yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/dzonz/.yarn/lib/cli.js:304:30)
+      at /home/dzonz/.yarn/lib/cli.js:315:13
+
+npm manifest: 
+  
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
