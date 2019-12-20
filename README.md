@@ -27,6 +27,8 @@ import { block } from 'codestream.js';
 # Block
 
 ```javascript
+var block = codestream.block;
+
 const thisSampleParam = 'this value';
 const val = block('#parent', (_handle) => {
   console.log('params', _handle);
@@ -37,18 +39,23 @@ const val = block('#parent', (_handle) => {
 # Blocks
 
 ```javascript
+var block = codestream.block;
 
-const mathDouble = (param) => block('#mathDouble', _handle => {
-  console.debug('params', param, '' + _handle);
-  return '[' + mathAdd(param, param) + ']';
-});
+console.log("%cIndependent blocks", "color: red; font-size: 16px");
 
-const mathAdd = (param, anotherParam) => block('#mathAdd', _handle => {
-  console.debug('params', param, anotherParam, '' + _handle);
-  return param + anotherParam;
-});
+const mathDouble = param =>
+  block("#mathDouble", _handle => {
+    console.debug("params", param, "" + _handle);
+    return "[" + mathAdd(param, param) + "]";
+  });
 
-console.log(mathDouble(6));
+const mathAdd = (param, anotherParam) =>
+  block("#mathAdd", _handle => {
+    console.debug("params", param, anotherParam, "" + _handle);
+    return param + anotherParam;
+  });
+
+console.log('mathDouble(6) = ', mathDouble(6));
 
 /**
  * Result is
@@ -66,25 +73,29 @@ console.log(mathDouble(6));
 
 var block = codestream.block;
 
+console.log("%cIndependent blocks", "color: green; font-size: 16px");
+
 const wrapAll = paramArray =>
-block("#wrapAll", _wh => {
-    console.debug("number of elements", paramArray.length, '' + _wh);
-    return paramArray.map((itm, idx) =>
-    block(`#traverse(${itm})`, _th => {
+  block("#wrapAll", _wh => {
+    console.debug("number of elements", paramArray.length, "" + _wh);
+    return _wh.fork("#map()", _th =>
+      paramArray.map((itm, idx) => {
         if (idx % 2) {
-        console.info("wrap odd", '' + _th);
-        return "{" + itm + "}";
+          console.info("wrap odd", "" + _wh);
+          return "{" + itm + "}";
         }
 
-        console.info("wrap even", '' + _th);
+        console.info("wrap even", "" + _th);
         return "[" + itm + "]";
-    })
+      })
     );
-});
+  });
 
 console.log(
-  "result",
-  wrapAll(["Hello", "my", "occupation", "is", "a", "good", "developer"])
+  "wrapAll([]) = ",
+  wrapAll(["Hello", "my", "occupation", "is", "a", "good", "developer"]).join(
+    " "
+  )
 );
 
 ```
