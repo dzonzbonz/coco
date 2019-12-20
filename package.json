@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git-user@git.horisen.biz:8142/opt/git/horisen-pro/angular/components/horisen-angular.git"
+    "url": "https://github.com/dzonzbonz/codestream.js"
   },
   "main": "dist/codestream-min.js",
   "dependencies": {},
