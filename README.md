@@ -1,50 +1,55 @@
 # codestream
 Code Consoling the simple way
 
-# Forking
+# Install
+
+```bash
+yarn add dzonzbonz/codestream.js
+```
+
+# Usage
+
+```html
+<script src="dist/codestream.js"></script>
+```
+with vanila js
+
+```javascript
+var block = codestream.block;
+```
+
+or with bundle builders
+
+```javascript
+import { block } from 'codestream.js';
+```
+
+# Block
 
 ```javascript
 const thisSampleParam = 'this value';
-const _code = cs.fork('#parent');
-_code.log('params', thisSampleParam);
-
-/**
- * > #parent params this value
- */
+const val = block('#parent', (_handle) => {
+  console.log('params', _handle);
+  return '[' + thisSampleParam + ']';
+});
 ```
 
-# Chained Forks
-
-```javascript
-const thisSampleParam = 'this value';
-const _code = cs.fork('#parent');
-_code.log('params', thisSampleParam);
-
-const thatSampleParam = 'that value';
-const _block = _code.fork('#child');
-_block.log('params', thatSampleParam);
-
-/**
- * > #parent params this value
- * > #parent #child params that value
- */
-```
-
-# Synchronious Block Streams
+# Blocks
 
 ```javascript
 
-const mathDouble = (param) => cs.block('#mathDouble', _log => {
-  _log('params', param);
-  return '[' + anotherMethod(param, param) + ']';
+const mathDouble = (param) => block('#mathDouble', _handle => {
+  console.debug('params', param, '' + _handle);
+  return '[' + mathAdd(param, param) + ']';
 });
 
-const mathAdd = (param, anotherParam) => cs.block('#mathAdd', _log => {
-  _log('params', param, anotherParam);
+const mathAdd = (param, anotherParam) => block('#mathAdd', _handle => {
+  console.debug('params', param, anotherParam, '' + _handle);
   return param + anotherParam;
 });
 
-mathDouble(2);
+console.log(mathDouble(6));
+
 /**
  * Result is
  *
@@ -55,23 +60,31 @@ mathDouble(2);
  */
 ```
 
-# Synchronious Nested Block Streams
+# Nested Block
 
 ```javascript
 
-const wrapAll = (paramArray) => cs.block('#wrapAll', _log => {
-  _log.debug('number of elements', paramArray.length);
-  return paramArray.map((itm, idx) => _log.block(`#traverse(${itm})`, _tlog => {
-    if (idx % 2) {
-      _tlog.info('wrap odd');
-      return '{' + itm + '}';
-    }
+var block = codestream.block;
 
-    _tlog.info('wrap even');
-    return '[' + itm + ']';
-  })
+const wrapAll = paramArray =>
+block("#wrapAll", _wh => {
+    console.debug("number of elements", paramArray.length, '' + _wh);
+    return paramArray.map((itm, idx) =>
+    block(`#traverse(${itm})`, _th => {
+        if (idx % 2) {
+        console.info("wrap odd", '' + _th);
+        return "{" + itm + "}";
+        }
+
+        console.info("wrap even", '' + _th);
+        return "[" + itm + "]";
+    })
+    );
 });
 
-wrapAll(['Hello', 'my', 'occupation', 'is', 'a', 'good', 'developer']);
+console.log(
+  "result",
+  wrapAll(["Hello", "my", "occupation", "is", "a", "good", "developer"])
+);
 
 ```
